@@ -32,3 +32,10 @@ npm -v
 npm install
 npm run dev
 ```
+
+## Annex B: build and start project
+
+```sh
+npm install
+npm start
+```
