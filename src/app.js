@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import exphbs from "express-handlebars";
 import { HttpStatusCode } from "./utils";
 
+import userRoutes from "./users/users.routes";
+
 const app = express();
 dotenv.config();
 
@@ -21,12 +23,16 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+app.use("/static", express.static("public"));
+
+app.use("/user", userRoutes);
+
 app.get("/", (req, res) => {
     res.render("home");
 });
 
 app.get("*", (req, res) => {
-    res.status(HttpStatusCode.OK).send("Welcome to the our API Rest");
+    res.status(HttpStatusCode.NOT_FOUND).render("404");
 });
 
 export default app;
